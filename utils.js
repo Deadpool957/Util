@@ -16,6 +16,32 @@ export default{
         var path = window.URL.createObjectURL(file);
         return path
 
+    },
+    //判断是微信环境还是企业微信环境
+    getIsWeixn(){
+        var ua = navigator.userAgent.toLowerCase(); // 将用户代理头的值转为小写
+        //判断微信的方法：
+        if(ua.match(/micromessenger/i) == 'micromessenger'){
+                if (/wxwork/i.test(ua)){
+                // 企业微信
+                    return 'wxwork'
+                }else{
+                    return 'wx'
+                console.log('微信')
+                }
+        }
+      
+
+
+    },
+    //正则表达式(删除字符串中的字母其他的字符);
+    //^[a-z] 匹配以小写字母 开头 的文本串 
+     //[^a-z] 表示与 不包含 小写字母的字符匹配 
+    formatString(val){
+        var reg = /[^a-z]/ig;
+        if(val){
+            return val.replace(reg,'')
+        }
     }
 
 
