@@ -42,6 +42,16 @@ export default{
         if(val){
             return val.replace(reg,'')
         }
+    },
+    //返回数组的最后一个元素
+    getLastArry(){
+        //1
+        var arr = new Array("js","JavaScript","jQuery");
+        var end = arr.pop();
+        //2
+        var end = arr[arr.length-1];
+        //3,返回的数据类型是 array 不是 string
+        var end = arr.slice(-1);
     }
 
 
