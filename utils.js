@@ -52,7 +52,35 @@ export default{
         var end = arr[arr.length-1];
         //3,返回的数据类型是 array 不是 string
         var end = arr.slice(-1);
-    }
+    },
+    //防抖
+    debounce(fn,delay,...args){
+        let timeout = null;//创建一个标记用来存放定时器的返回值
+        return function(e){
+            if(timeout){
+                clearTimeout(timeout)
+            }//每当用户输入的时候把前一个settimeout clear掉
+            timeout = setTimeout(()=>{
+                fn.apply(this,[e,...args]);
+                clearTimeout(timeout);
+                timeout=null;
+            },delay )
+        }
+    },
+    //节流
+    throttle(fn) {
+        let canRun = true; // 通过闭包保存一个标记
+        return function () {
+          if (!canRun) return; // 在函数开头判断标记是否为true，不为true则return
+          canRun = false; // 立即设置为false
+          setTimeout(() => { // 将外部传入的函数的执行放在setTimeout中
+            fn.apply(this, arguments);
+            // 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是false，在开头被return掉
+            canRun = true;
+          }, 500);
+        };
+      },
+      
 
 
 }
