@@ -80,7 +80,15 @@ export default{
           }, 500);
         };
       },
-      
+      //检测日期是否是Date类型
+      judge(date){
+          //true
+          if(date instanceof Date){
+              return true 
+          }else{
+              return false 
+          }
+      }
 
 
 }
